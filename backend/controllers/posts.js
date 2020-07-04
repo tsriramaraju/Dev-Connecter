@@ -1,6 +1,7 @@
-// @desc      Get posts
-// @route     Get /v1/api/posts/
-// @access    Public
+// @route    GET api/profile/me
+// @desc     Get current users profile
+// @access   Private
+
 exports.getPosts = (req, res) => {
-  res.json({ message: 'Hello There (Posts)' });
+  res.json('get profile');
 };

@@ -9,6 +9,7 @@
   "author": "the jobless nerd",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcrypt": "^5.0.0",
     "config": "^3.3.1",
     "express": "^4.17.1",

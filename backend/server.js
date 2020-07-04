@@ -9,9 +9,6 @@ const authRoutes = require('./routes/auth');
 const app = express();
 const port = 3000;
 
-//DataBase Connection
-connectDB();
-
 //body Parser
 app.use(express.json());
 
@@ -25,5 +22,11 @@ app.use('/v1/api/posts', postsRoutes);
 app.use('/v1/api/profile', profileRoutes);
 app.use('/v1/api/auth', authRoutes);
 
-//Server
-app.listen(port, () => console.log('Server running on PORT:' + port));
+console.clear();
+//DataBase Connection
+connectDB()
+  .then(() =>
+    //Server
+    app.listen(port, () => console.log('Server running on PORT:' + port))
+  )
+  .catch((err) => console.log(err));

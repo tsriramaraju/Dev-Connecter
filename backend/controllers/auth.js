@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
     const jwtSecret = config.get('jwtSecret');
 
     const token = jwt.sign({ payload: user.id }, jwtSecret, {
-      expiresIn: 3500,
+      expiresIn: 350000,
     });
 
     bcrypt.compare(password, hashPassword, (err, result) => {
