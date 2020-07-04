@@ -3,6 +3,7 @@ const connectDB = require('./config/mongoDB');
 const userRoutes = require('./routes/users');
 const postsRoutes = require('./routes/posts');
 const profileRoutes = require('./routes/profile');
+const authRoutes = require('./routes/auth');
 
 //Intialisation
 const app = express();
@@ -22,6 +23,7 @@ app.get('/v1/api/', (req, res) =>
 app.use('/v1/api/users', userRoutes);
 app.use('/v1/api/posts', postsRoutes);
 app.use('/v1/api/profile', profileRoutes);
+app.use('/v1/api/auth', authRoutes);
 
 //Server
 app.listen(port, () => console.log('Server running on PORT:' + port));
