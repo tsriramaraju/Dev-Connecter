@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "server": "npm start --prefix backend"
+  }
+}
