@@ -22,7 +22,7 @@ exports.createPost = async (req, res) => {
     const result = await newpost.save();
     res.json(result);
   } catch (error) {
-    onsole.log('server error in creating post...\n' + error);
+    console.log('server error in creating post...\n' + error);
     res.status(500).json([{ msg: 'Sever Error' }]);
   }
 };

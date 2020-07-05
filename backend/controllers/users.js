@@ -9,6 +9,7 @@ const { validationResult } = require('express-validator');
 // @route     POST /v1/api/users/
 // @access    Public
 exports.createUser = async (req, res) => {
+  console.log('requestesd');
   try {
     const errors = validationResult(req).errors;
 
@@ -23,7 +24,7 @@ exports.createUser = async (req, res) => {
     let user = await User.find({ email });
 
     if (user.length > 0) {
-      console.log(user);
+      // console.log(user);
       return res.status(401).json([{ msg: 'User Exists' }]);
     }
 

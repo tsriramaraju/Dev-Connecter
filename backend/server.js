@@ -11,7 +11,14 @@ const port = 8080;
 
 //body Parser
 app.use(express.json());
-
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 //Routes
 app.get('/', (req, res) => res.json({ message: 'welcome to Dev Connector' }));
 app.get('/v1/api/', (req, res) =>
