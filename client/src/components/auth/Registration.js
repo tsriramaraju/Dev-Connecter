@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { register } from '../../redux/actions/auth';
 import { setAlert } from '../../redux/actions/alert';
+import { Redirect } from 'react-router-dom';
 
-const Registration = ({ setAlert }) => {
+const Registration = ({ register, setAlert, isAuth }) => {
   const [formData, setData] = useState({
     name: '',
     email: '',
     password: '',
     password2: '',
   });
+  if (isAuth) return <Redirect to="/dashboard" />;
 
   const { name, email, password, password2 } = formData;
 
@@ -23,28 +26,7 @@ const Registration = ({ setAlert }) => {
       setAlert('Passwords Dont Match', 'danger');
       return;
     }
-
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const body = JSON.stringify(formData);
-      const uri = 'http://localhost:8080/v1/api/users/';
-      const res = await axios.post(uri, body, config);
-      setAlert(res.data.msg, 'success');
-    } catch (err) {
-      if (err.response) {
-        console.log(`%c response error`, 'color:red');
-        const errArray = err.response.data;
-        errArray.forEach((err) => setAlert(err.msg, 'danger'));
-      } else if (err.request) {
-        console.log(`request error ${err.response.data}`);
-      } else {
-        console.log(`total error ${err.response.data}`);
-      }
-    }
+    register(formData);
   };
 
   return (
@@ -108,4 +90,13 @@ const Registration = ({ setAlert }) => {
   );
 };
 
-export default connect(null, { setAlert })(Registration);
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuthenticated,
+});
+
+const mapDispatchToProps = {
+  register,
+  setAlert,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);

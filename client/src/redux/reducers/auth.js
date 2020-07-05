@@ -18,14 +18,32 @@ const initialState = {
 export default function alert(state = initialState, action) {
   const { type, payload } = action;
 
-  //   switch (type) {
-  //     case SET_ALERT:
-  //       return [...state, payload];
+  switch (type) {
+    case USER_LOADED:
+      return {
+        ...state,
+        user: payload.user,
+        isAuthenticated: true,
+        loading: false,
+      };
+    case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
+      localStorage.setItem('token', payload.token);
+      return { ...state, isAuthenticated: true, loading: false };
 
-  //     case REMOVE_ALERT:
-  //       return state.filter((error) => error.id !== payload);
+    case AUTH_ERROR:
+    case REGISTER_FAIL:
+    case LOGIN_FAIL:
+    case LOGOUT:
+      return {
+        ...state,
+        token: null,
+        user: null,
+        isAuthenticated: null,
+        loading: false,
+      };
 
-  //     default:
-  //       return state;
-  //   }
+    default:
+      return state;
+  }
 }

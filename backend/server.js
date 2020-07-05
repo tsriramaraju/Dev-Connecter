@@ -4,6 +4,7 @@ const userRoutes = require('./routes/users');
 const postsRoutes = require('./routes/posts');
 const profileRoutes = require('./routes/profile');
 const authRoutes = require('./routes/auth');
+const cors = require('cors');
 
 //Intialisation
 const app = express();
@@ -11,14 +12,15 @@ const port = 8080;
 
 //body Parser
 app.use(express.json());
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Origin, X-Requested-With, Content-Type, Accept'
+//   );
+//   next();
+// });
+app.use(cors());
 //Routes
 app.get('/', (req, res) => res.json({ message: 'welcome to Dev Connector' }));
 app.get('/v1/api/', (req, res) =>

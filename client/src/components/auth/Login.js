@@ -1,42 +1,25 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+
 import { connect } from 'react-redux';
-import { setAlert } from '../../redux/actions/alert';
-const Login = ({ setAlert }) => {
+
+import { login } from '../../redux/actions/auth';
+import { Redirect } from 'react-router-dom';
+const Login = ({ login, isAuth }) => {
   const [formData, setData] = useState({
     email: '',
     password: '',
   });
+
+  if (isAuth) return <Redirect to="/dashboard" />;
 
   const { email, password } = formData;
 
   const onChangeHandler = (e) =>
     setData({ ...formData, [e.target.name]: e.target.value });
 
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const body = JSON.stringify(formData);
-      const uri = 'http://localhost:8080/v1/api/auth/';
-      const res = await axios.post(uri, body, config);
-      console.log(res.data);
-      setAlert(res.data.msg, 'success');
-    } catch (err) {
-      if (err.response) {
-        console.log(`%c response error`, 'color:red');
-        const errArray = err.response.data;
-        errArray.forEach((err) => setAlert(err.msg, 'danger'));
-      } else if (err.request) {
-        console.log(`request error ${err.response.data}`);
-      } else {
-        console.log(`total error ${err.response.data}`);
-      }
-    }
+    login(formData);
   };
 
   return (
@@ -74,4 +57,12 @@ const Login = ({ setAlert }) => {
   );
 };
 
-export default connect(null, { setAlert })(Login);
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuthenticated,
+});
+
+const mapDispatchToProps = {
+  login,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
