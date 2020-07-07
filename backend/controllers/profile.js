@@ -7,6 +7,7 @@ const axios = require('axios');
 // @access   Private
 exports.getProfile = async (req, res) => {
   const userId = req.user._id;
+  console.log('Request for get current User profile');
 
   try {
     const profile = await Profile.findOne({ user: userId }).populate(
@@ -24,6 +25,7 @@ exports.getProfile = async (req, res) => {
 // @desc     Create or update user profile
 // @access   Private
 exports.postProfile = async (req, res) => {
+  console.log('Request for create/update profile');
   const errors = validationResult(req).errors;
   if (errors.length > 0) {
     return res.status(400).json(errors);
@@ -83,6 +85,7 @@ exports.postProfile = async (req, res) => {
 // @desc     Get all profiles
 // @access   Public
 exports.getProfiles = async (req, res) => {
+  console.log('Request for get all profiles');
   try {
     const profiles = await Profile.find().populate('user', 'name avatar email');
     res.json(profiles);
@@ -96,6 +99,7 @@ exports.getProfiles = async (req, res) => {
 // @desc     Get profile by user ID
 // @access   Public
 exports.getIndividualProfile = async (req, res) => {
+  console.log('Request for get individual profile');
   const userId = req.params.user_id;
   try {
     const profile = await Profile.findOne({ user: userId }).populate(
@@ -114,7 +118,7 @@ exports.getIndividualProfile = async (req, res) => {
 // @access   Private
 exports.deleteProfile = async (req, res) => {
   const userId = req.user._id;
-
+  console.log('Request for delete profile');
   try {
     const result = await Profile.deleteOne({ user: userId });
     res.json(result);
@@ -128,6 +132,7 @@ exports.deleteProfile = async (req, res) => {
 // @desc     Add profile experience
 // @access   Private
 exports.addExperience = async (req, res) => {
+  console.log('Request for add experience');
   const errors = validationResult(req).errors;
   if (errors.length > 0) {
     return res.status(400).json(errors);
@@ -151,6 +156,7 @@ exports.addExperience = async (req, res) => {
 // @access   Private
 exports.deleteExpereince = async (req, res) => {
   const expId = req.params.exp_id;
+  console.log('Request for delete experience');
 
   try {
     const profile = await Profile.findOne({ user: req.user._id });
@@ -169,6 +175,7 @@ exports.deleteExpereince = async (req, res) => {
 // @desc     Add profile education
 // @access   Private
 exports.addEducation = async (req, res) => {
+  console.log('Request for add education');
   const errors = validationResult(req).errors;
   if (errors.length > 0) {
     return res.status(400).json(errors);
@@ -191,6 +198,7 @@ exports.addEducation = async (req, res) => {
 // @desc     Delete education from profile
 // @access   Private
 exports.deleteEducation = async (req, res) => {
+  console.log('Request for delete education');
   const eduId = req.params.edu_id;
 
   try {
@@ -210,6 +218,7 @@ exports.deleteEducation = async (req, res) => {
 // @desc     Get user repos from Github
 // @access   Public
 exports.getRepos = async (req, res) => {
+  console.log('Request for get repos');
   try {
     const uri = encodeURI(
       `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`

@@ -11,6 +11,13 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import setAuthToken from './utils/setAuthHeader';
 import { loadUser } from './redux/actions/auth';
+import Privateroute from './components/routing/PrivateRoute';
+import Dashboard from './components/dashboard/Dashboard';
+import Developers from './components/developers/Developers';
+import Profile from './components/profile/Profile';
+import Createprofile from './components/profile udates/CreateProfile';
+import AddEducation from './components/profile udates/AddEducation';
+import AddExperience from './components/profile udates/AddExperience';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -30,6 +37,12 @@ const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/register" exact component={Register} />
           <Route path="/login" exact component={Login} />
+          <Route path="/developers" exact component={Developers} />
+          <Route path="/profile/:id" exact component={Profile} />
+          <Privateroute path="/dashboard" exact component={Dashboard} />
+          <Privateroute path="/createprofile" exact component={Createprofile} />
+          <Privateroute path="/addeducation" exact component={AddEducation} />
+          <Privateroute path="/addexperience" exact component={AddExperience} />
         </Switch>
       </BrowserRouter>
     </Provider>

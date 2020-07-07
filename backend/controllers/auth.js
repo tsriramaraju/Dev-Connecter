@@ -8,6 +8,7 @@ const { validationResult } = require('express-validator');
 // @route     GET /v1/api/auth/
 // @access    Private
 exports.getUser = (req, res) => {
+  console.log('Request for get Users');
   res.json({ user: req.user });
 };
 
@@ -15,6 +16,7 @@ exports.getUser = (req, res) => {
 // @route     POST /v1/api/auth/
 // @access    public
 exports.login = async (req, res) => {
+  console.log('Request for user login');
   try {
     const errors = validationResult(req).errors;
     if (errors.length > 0) {

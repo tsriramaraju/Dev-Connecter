@@ -9,7 +9,7 @@ const { validationResult } = require('express-validator');
 // @route     POST /v1/api/users/
 // @access    Public
 exports.createUser = async (req, res) => {
-  console.log('requestesd');
+  console.log('Request for create user');
   try {
     const errors = validationResult(req).errors;
 

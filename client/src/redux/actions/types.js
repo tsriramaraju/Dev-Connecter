@@ -7,3 +7,15 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
+export const GET_PROFILE = 'GET_PROFILE';
+export const GET_INDIVIDUAL_PROFILE = 'GET_INDIVIDUAL_PROFILE';
+export const GET_PROFILES = 'GET_PROFILES';
+export const GET_REPOS = 'GET_REPOS';
+export const ADD_PROFILE = 'ADD_PROFILE';
+export const ADD_EDUCATION = 'ADD_EDUCATION';
+export const DELETE_EDUCATION = 'DELETE_EDUCATION';
+
+export const DELETE_EXPRERIENCE = 'DELETE_EXPRERIENCE';
+export const ADD_EXPRERIENCE = 'ADD_EXPRERIENCE';
+export const CLEAR_PROFILE = 'CLEAR_PROFILE';
+// export const LOGOUT = 'LOGOUT';

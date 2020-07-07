@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+
 import { register } from '../../redux/actions/auth';
 import { setAlert } from '../../redux/actions/alert';
 import { Redirect } from 'react-router-dom';

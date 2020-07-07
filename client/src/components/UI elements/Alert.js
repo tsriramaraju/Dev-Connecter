@@ -10,7 +10,7 @@ const Alert = ({ alerts }) => {
       return (
         <div
           key={err.id}
-          style={{ marginTop: '80px' }}
+          style={{ position: 'absolute', top: '40vh' }}
           className={`alert alert-${err.alertType}`}
         >
           {err.msg}
